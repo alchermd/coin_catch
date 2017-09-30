@@ -7,9 +7,9 @@ class Game(object):
     """
     Represents the framework for a Pygame project.
     """
-    def __init__(self, screen: pygame.Surface, color: tuple):
+    def __init__(self, screen: pygame.Surface, bg_img: pygame.Surface):
         self.screen = screen
-        self.color = color
+        self.bg_img = bg_img
 
     
     def handle_events(self) -> bool:
@@ -44,6 +44,6 @@ class Game(object):
         if screen is None:
             screen = self.screen
 
-        screen.fill(self.color)
+        screen.blit(self.bg_img, (0, 0))
 
         pygame.display.flip()
