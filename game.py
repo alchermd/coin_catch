@@ -8,10 +8,13 @@ def main():
 
     # Setup the main screen.
     main_screen = pygame.display.set_mode((700, 500))
-    pygame.display.set_caption("hello, pygame")
-    
+    pygame.display.set_caption("Catch the Coins!")
+
+    # Load background
+    bg_image = pygame.image.load("assets/image/background.jpg").convert()
+
     # Create a Game instance.
-    game = Game(main_screen, p.white)
+    game = Game(main_screen, bg_image)
 
     # Meta variables.
     fps = 30
