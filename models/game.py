@@ -2,6 +2,7 @@
 game.py - contains game instance classes.
 """
 import pygame
+import models.palette as p
 
 class Game(object):
     """
@@ -11,6 +12,10 @@ class Game(object):
         self.screen = screen
         self.bg_img = bg_img
 
+        # Scoring system.
+        self.score = 0
+        score_font = pygame.font.Font(None, 30)
+        self.score_text = score_font.render("SCORE: {}".format(self.score), True, p.black)
     
     def handle_events(self) -> bool:
         """
@@ -44,6 +49,11 @@ class Game(object):
         if screen is None:
             screen = self.screen
 
+        # Draw the background.
         screen.blit(self.bg_img, (0, 0))
 
+        # Draw the scoreboard.
+        screen.blit(self.score_text, (10, 10))
+
+        # Update the screen.
         pygame.display.flip()
