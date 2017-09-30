@@ -3,24 +3,24 @@ sprite.py - contains sprite classes derived from the pygame.sprite.Sprite class.
 """
 import pygame
 
-def Block(pygame.sprite.Sprite):
+
+class Paddle(pygame.sprite.Sprite):
     """
-    A simple implementation of a custom sprite class.
+    A player-controlled paddle.
     """
-    def __init__(self, color: tuple, width: int, height: int):
+    def __init__(self, img: pygame.Surface):
         """
-        Creates a new Block instance.
+        Creates a new Paddle object.
 
         Args:
-            color: a 3 value tuple that represents the Block's RGB color.
-            width: the width of the Block.
-            height: the height of the Block.
+            img: A pygame.Surface image loaded through pygame.image.load
         """
         super().__init__()
 
-        # Create the Block's surface.
+        # Create the Paddle surface.
+        width, height = img.get_width(), img.get_height()
         self.image = pygame.Surface((width, height))
-        self.image.fill(color)
-        
+        self.image.blit(img, (0, 0))
+
         # Save the dimensions to the rect attribute.
         self.rect = self.image.get_rect()
