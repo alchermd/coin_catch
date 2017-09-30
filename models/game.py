@@ -3,8 +3,9 @@ game.py - contains game instance classes.
 """
 import pygame
 import os
+import random
 import models.palette as p
-from models.sprite import Paddle
+from models.sprite import Paddle, Coin
 
 class Game(object):
     """
@@ -23,15 +24,35 @@ class Game(object):
         self.all_sprites = pygame.sprite.Group()
         self.coins = pygame.sprite.Group()
 
-        # Create the player's paddle.
+        # Resolve path for paddle image.
         paddle_path = os.path.join("../", os.getcwd(), "assets/image/paddle.png")
         paddle_img = pygame.image.load(paddle_path).convert()
+
+        # Create player's paddle object.
         self.paddle = Paddle(paddle_img, self.screen)
         self.all_sprites.add(self.paddle)
 
         # Set the starting position of the paddle.
         self.paddle.rect.x = self.screen.get_width() / 2 - self.paddle.image.get_width() / 2
         self.paddle.rect.y = self.screen.get_height() - self.paddle.image.get_height()
+
+        # Generate some coins.
+        for i in range(50):
+            # Resolve path for coin image.
+            coin_path = os.path.join("../", os.getcwd(), "assets/image/coin.png")
+            coin_img = pygame.image.load(coin_path).convert()
+            
+            # Create a new coin object.
+            new_coin = Coin(coin_img, self.screen)
+            new_coin.image.set_colorkey(p.black)
+
+            # Set coin location randomly.
+            new_coin.rect.x = random.randrange(self.screen.get_width() - new_coin.image.get_width())
+            new_coin.rect.y = random.randrange(-(self.screen.get_height() // 2), self.screen.get_height() // 2)
+
+            # Save coin to sprite groups.
+            self.all_sprites.add(new_coin)
+            self.coins.add(new_coin)
 
     def handle_events(self) -> bool:
         """
