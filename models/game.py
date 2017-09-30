@@ -26,7 +26,7 @@ class Game(object):
         # Create the player's paddle.
         paddle_path = os.path.join("../", os.getcwd(), "assets/image/paddle.png")
         paddle_img = pygame.image.load(paddle_path).convert()
-        self.paddle = Paddle(paddle_img)
+        self.paddle = Paddle(paddle_img, self.screen)
         self.all_sprites.add(self.paddle)
 
         # Set the starting position of the paddle.
@@ -45,6 +45,20 @@ class Game(object):
             if event.type == pygame.QUIT:
                 return False
 
+            # Adjust the paddle position depending on key pressed.
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    self.paddle.x_speed = -5
+
+                if event.key == pygame.K_RIGHT:
+                    self.paddle.x_speed = 5
+                
+            # Stop the motion of the paddle on key release.
+            if event.type == pygame.KEYUP:
+                if event.key in (pygame.K_LEFT, pygame.K_RIGHT):
+                    self.paddle.x_speed = 0
+
+            
         return True
 
 
@@ -52,7 +66,7 @@ class Game(object):
         """
         Runs the logic for running the game.
         """
-        pass
+        self.all_sprites.update()
 
 
     def display_frame(self, screen: pygame.Surface=None):
