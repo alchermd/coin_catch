@@ -41,9 +41,13 @@ class Game(object):
             # Resolve path for coin image.
             coin_path = os.path.join("../", os.getcwd(), "assets/image/coin.png")
             coin_img = pygame.image.load(coin_path).convert()
-            
+
+            # Resolve path for coin sound effect.
+            coin_sound_path = os.path.join("../", os.getcwd(), "assets/audio/coin_sound.wav")
+            coin_sound = pygame.mixer.Sound(coin_sound_path)
+
             # Create a new coin object.
-            new_coin = Coin(coin_img, self.screen)
+            new_coin = Coin(coin_img, coin_sound, self.screen)
             new_coin.image.set_colorkey(p.black)
 
             # Set coin location randomly.
@@ -95,6 +99,9 @@ class Game(object):
             # Update the score.
             self.score += 1
             self.score_text = self.score_font.render("SCORE: {}".format(self.score), True, p.black)
+
+            # Play the coin's sound effect.
+            coin.sound.play()
 
             # Reset the coin's position.
             coin.reset()
