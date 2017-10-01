@@ -58,6 +58,13 @@ class Game(object):
             self.all_sprites.add(new_coin)
             self.coins.add(new_coin)
 
+        # Resolve background music path.
+        bg_music_path = os.path.join("../", os.getcwd(), "assets/audio/happy_walk.wav")
+        self.bg_music = pygame.mixer.Sound(bg_music_path)
+
+        # Play the background music on loop.
+        self.bg_music.play(-1)
+
     def handle_events(self) -> bool:
         """
         Processes the events in the Pygame event queue.
