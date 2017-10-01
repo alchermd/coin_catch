@@ -45,7 +45,7 @@ class Coin(pygame.sprite.Sprite):
     """
     A coin that drops from a random place at the top of the screen.
     """
-    def __init__(self, img: pygame.Surface, screen: pygame.Surface):
+    def __init__(self, img: pygame.Surface, sound: pygame.mixer.Sound, screen: pygame.Surface):
         """
         Creates a new Coin object.
 
@@ -55,6 +55,7 @@ class Coin(pygame.sprite.Sprite):
         """
         super().__init__()
         self.screen = screen
+        self.sound = sound
 
         # Create the Coin surface.
         width, height = img.get_width(), img.get_height()
