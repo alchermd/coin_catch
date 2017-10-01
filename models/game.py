@@ -17,8 +17,8 @@ class Game(object):
 
         # Scoring system.
         self.score = 0
-        score_font = pygame.font.Font(None, 30)
-        self.score_text = score_font.render("SCORE: {}".format(self.score), True, p.black)
+        self.score_font = pygame.font.Font(None, 30)
+        self.score_text = self.score_font.render("SCORE: {}".format(self.score), True, p.black)
 
         # Create sprite groups.
         self.all_sprites = pygame.sprite.Group()
@@ -88,6 +88,16 @@ class Game(object):
         Runs the logic for running the game.
         """
         self.all_sprites.update()
+
+        # Check for collisions.
+        coins_hit = pygame.sprite.spritecollide(self.paddle, self.coins, False)
+        for coin in coins_hit:
+            # Update the score.
+            self.score += 1
+            self.score_text = self.score_font.render("SCORE: {}".format(self.score), True, p.black)
+
+            # Reset the coin's position.
+            coin.reset()
 
 
     def display_frame(self, screen: pygame.Surface=None):
