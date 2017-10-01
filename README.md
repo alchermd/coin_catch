@@ -1,32 +1,14 @@
-# Pygame Template
+# Coin Catch
 
-A simple template for bootstrapping a new Pygame project.
+<p align="center">
+    <img align="center" src="assets/screenshots/preview.png" style="height: 300px; width: 400px;">
+</p>
 
-## Quick Structure Overview
+An endless game of catching falling coins. Bootstrapped with [pygame_template](https://github.com/alchermd/pygame_template).
 
-````
---
- |_ models
- | |
- | |_ __init__.py
- | |_ game.py
- | |_ palette.py
- | |_ sprite.py
- |
- |_ game.py
-````
+## Controls
 
-* `models`
-  * `__init__.py` - signifies that the `models` directory is a module.
-
-  * `game.py` - contains game instance classes.
-
-  * `palette.py` - contains color related data.
-
-  * `sprites.py` - contains sprite classes derived from the `pygame.sprite.Sprite` class.
-
-* `game.py` - main project endpoint.
-  
+Use the `LEFT` and `RIGHT` key to control the paddle.
 
 ## License
 
