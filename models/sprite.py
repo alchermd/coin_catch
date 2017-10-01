@@ -72,5 +72,8 @@ class Coin(pygame.sprite.Sprite):
 
         # Respawn coin when it dropped out of bounds.
         if self.rect.y >= self.screen.get_height() + self.image.get_height():
-            self.rect.x = random.randrange(self.screen.get_width() - self.image.get_width())
-            self.rect.y = random.randrange(-(self.screen.get_height() // 2), 0)
+            self.reset()
+
+    def reset(self):
+        self.rect.x = random.randrange(self.screen.get_width() - self.image.get_width())
+        self.rect.y = random.randrange(-(self.screen.get_height() // 2), 0)
