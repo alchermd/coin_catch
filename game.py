@@ -3,6 +3,9 @@ import models.palette as p
 from models.game import Game
 
 def main():
+    # Pre-initialize the sound engine to reduce sound delay.
+    pygame.mixer.pre_init(44100, -16, 1, 512)
+
     # Initialize the pygame engine.
     pygame.init()
 
